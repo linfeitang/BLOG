@@ -1,16 +1,13 @@
----
-title: Hexo创建个人博客
-tags: hexo
-abbrlink: 3fb4ccf6
-date: 2020-02-13 17:31:49
----
+
 
 记录一下自己学习的过程。以免时间长了忘记。
-先说明一下本博客的构造:
+构造:
 [Hexo](https://hexo.io/zh-cn/) + [GitHub Pages](https://pages.github.com/)
 
+[TOC]
 
-#### 首先下载一些必要的软件： 
+#### 1.首先下载一些必要的软件：
+
 - [Node.js](http://nodejs.cn/download/),这是Hexo得以运行的基础。 
 - [git](https://git-scm.com/)，在后面会用到。  
 - npm，用于为Hexo安装各种插件的一个类似包管理器的东西。它安装Node.js时就已经自动安装了。  
@@ -21,17 +18,20 @@ date: 2020-02-13 17:31:49
 `$npm install -g hexo-cli`   
 具体可参见[官方文档](https://hexo.io/zh-cn/docs/)    
 
-#### 更改一下npm镜像源
+#### 2.更改一下npm镜像源
+
 查看npm当前的配置：`$ npm config list`
 更改为淘宝镜像源：`$ npm --registry=https://registry.npm.taobao.org`
 
-#### 本地生成静态hexo博客框架
+#### 3.本地生成静态hexo博客框架
+
 `$ hexo init test`  
 test是你新创建的文件夹名称（随意命名），用来作为博客的本地编辑库用的,建在什么地方无所谓       
 进入到test文件夹，执行  
 `$ npm install` (或者cnpm install)来安装hexo所需的一些依赖    
 
-#### 把本地的博客库与自己的GitHub pages关联起来 
+#### 4.把本地的博客库与自己的GitHub pages关联起来
+
 - 首先必须下载一个工具： 
 `$ cnpm install hexo-deployer-git --save`    
 - 获取git密钥和公钥使得本地git仓库跟远程GitHub关联起来：  
@@ -49,8 +49,10 @@ deploy:
 然后你就可以在浏览器中打开网址：
 https:\//example.github.io.git浏览你自己的博客了。
 
-#### 其他比较重要的东西：
-- **文章地址链接的问题**
+#### 5.其他比较重要的东西：
+
+##### 文章地址链接的问题
+
 如果博客文章标题用的是中文，则生成的链接中会含有很长一串莫名其妙的字符，
 所以通过下载下面这个插件来实现短小的永久链接：
 `cnpm install hexo-abbrlink --save`  
@@ -58,13 +60,15 @@ https:\//example.github.io.git浏览你自己的博客了。
 并且在test/\_config.yml中做如下修改：
 `permalink: post/:abbrlink.html` 这是文章的格式，默认是:year/:month/:day/:title/，贼不好  
 然后添加：
+
 ```
 abbrlink:
   alg: crc32  //这个表示算法： crc16(default) and crc32
   rep: hex    //这个表示进制： dec(default) and hex
 ```
 
-- **七牛云图床的使用**
+##### 七牛云图床的使用
+
 在七牛云上创建了自己的空间之后，就可以上传图片、音乐、视频等内容，
 会自动生成外链，但是如果每次写一篇文章都还要先打开七牛云上传图片、复制外链、添加到文章中的话，
 未免太麻烦了。所以在这里下载一个插件：
